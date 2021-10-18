@@ -1,4 +1,4 @@
-module go-ps1
+module github.com/confluentinc/go-ps1
 
 go 1.17
 
