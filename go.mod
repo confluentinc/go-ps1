@@ -1,4 +1,4 @@
-module ps1
+module go-ps1
 
 go 1.17
 
