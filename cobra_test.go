@@ -32,12 +32,16 @@ func TestLong(t *testing.T) {
 
 Bash:
 
-$ export PS1='$(confluent prompt) '$PS1
+::
+
+	export PS1='$(confluent prompt) '$PS1
 
 ZSH:
 
-$ setopt prompt_subst
-$ export PS1='$(confluent prompt) '$PS1
+::
+
+	setopt prompt_subst
+	export PS1='$(confluent prompt) '$PS1
 
 You can customize the prompt by calling passing the ` + "`" + `--format` + "`" + ` flag, for example ` + "`" + `-f '(confluent|%C)'` + "`" + `.
 To make this permanent, you must add the above lines to your Bash or ZSH profile.
@@ -56,11 +60,13 @@ Style
 The style of the text can be changed with a combination of functions, colors, and attributes.
 
 Functions:
+
 * fgcolor - Change the foreground color.
 * bgcolor - Change the background color.
 * attr    - Change a text attribute.
 
 Colors:
+
 * black
 * blue
 * cyan
@@ -71,6 +77,7 @@ Colors:
 * yellow
 
 Text Attributes:
+
 * bold
 * invert
 * italicize

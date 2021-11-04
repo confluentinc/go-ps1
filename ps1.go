@@ -4,14 +4,18 @@ const fmtLongDescription = `Use this command to add ` + "`" + `%s` + "`" + ` inf
 
 Bash:
 
-$ export PS1='$(%s prompt) '$PS1
+::
+
+	export PS1='$(%s prompt) '$PS1
 
 ZSH:
 
-$ setopt prompt_subst
-$ export PS1='$(%s prompt) '$PS1
+::
 
-You can customize the prompt by calling passing the ` + "`" + `--format` + "`" + ` flag, for example ` + "`" + `-f '(confluent|%%C)'` + "`" + `.
+	setopt prompt_subst
+	export PS1='$(%s prompt) '$PS1
+
+You can customize the prompt by calling passing the ` + "`" + `--format` + "`" + ` flag, for example ` + "`" + `-f '(%s|%%C)'` + "`" + `.
 To make this permanent, you must add the above lines to your Bash or ZSH profile.
 
 Formatting Tokens
@@ -27,11 +31,13 @@ Style
 The style of the text can be changed with a combination of functions, colors, and attributes.
 
 Functions:
+
 * fgcolor - Change the foreground color.
 * bgcolor - Change the background color.
 * attr    - Change a text attribute.
 
 Colors:
+
 * black
 * blue
 * cyan
@@ -42,6 +48,7 @@ Colors:
 * yellow
 
 Text Attributes:
+
 * bold
 * invert
 * italicize
@@ -58,7 +65,7 @@ Use a vertical bar to separate further attributes:
 * {{fgcolor "red" "this text is red, has a blue background, and is bold"|bgcolor "blue"|attr "bold"}}
 
 We can use tokens and colors in the same format string:
-* ({{fgcolor "blue" "confluent"}}|{{fgcolor "red" "%%C"}})`
+* ({{fgcolor "blue" "%s"}}|{{fgcolor "red" "%%C"}})`
 
 type ps1 struct {
 	cliName string

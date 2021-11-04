@@ -53,7 +53,7 @@ func (p *ps1) long() string {
 	}
 
 	tokens := strings.Join(rows, "\n")
-	return fmt.Sprintf(fmtLongDescription, p.cliName, p.cliName, p.cliName, tokens)
+	return fmt.Sprintf(fmtLongDescription, p.cliName, p.cliName, p.cliName, p.cliName, tokens, p.cliName)
 }
 
 func (p *ps1) prompt(format string, timeoutMs int) string {
