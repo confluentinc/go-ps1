@@ -62,10 +62,12 @@ Examples
 * {{attr "bold" "this text is bold"}}
 
 Use a vertical bar to separate further attributes:
-* {{fgcolor "red" "this text is red, has a blue background, and is bold"|bgcolor "blue"|attr "bold"}}
+
+* {{fgcolor "red" "this text is red and bold" | attr "bold"}}
 
 We can use tokens and colors in the same format string:
-* ({{fgcolor "blue" "%s"}}|{{fgcolor "red" "%%C"}})`
+
+* ({{fgcolor "blue" "%s"}} | {{fgcolor "red" "%%C"}})`
 
 type ps1 struct {
 	cliName string
