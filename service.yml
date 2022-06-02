@@ -1,0 +1,8 @@
+name: go-ps1
+lang: go
+lang_version: 1.17
+github:
+  enable: true
+  repo_name: confluentinc/go-ps1
+semaphore:
+  enable: true
