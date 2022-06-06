@@ -36,9 +36,13 @@ def job = {
                                 mkdir -p $GOROOT/bin
                                 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
                                 echo "machine github.com\n\tlogin $GIT_USER\n\tpassword $GIT_TOKEN" > ~/.netrc
+                                echo "MAKE JENKINS-DEPS\n"
                                 make jenkins-deps || exit 1
+                                echo "MAKE DEPS\n"
                                 make deps ARGS=--vendor-only
+                                echo "MAKE TEST\n"
                                 make test
+                                echo "MAKE RELEASE-CI\n"
                                 make release-ci
                             '''
                         }
