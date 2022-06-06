@@ -9,7 +9,7 @@ def job = {
         def mavenSettingsFile = "/home/jenkins/.m2/settings.xml"
         withMavenSettings("maven/jenkins_maven_global_settings", "settings", "MAVEN_GLOBAL_SETTINGS_FILE", mavenSettingsFile) {
 
-            stage('Setup Go and Dependencies') {
+            stage('Setup Go and Dependencies, and Run Tests') {
                 writeFile file:'extract-iam-credential.sh', text:libraryResource('scripts/extract-iam-credential.sh')
                 withVaultEnv([["docker_hub/jenkins", "user", "DOCKER_USERNAME"],
                     ["docker_hub/jenkins", "password", "DOCKER_PASSWORD"],
