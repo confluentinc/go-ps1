@@ -104,4 +104,5 @@ endif
 .PHONY: jenkins-deps
 # Jenkins only depends on goreleaser, so we omit golangci-lint and golicense
 jenkins-deps:
-        go get github.com/goreleaser/goreleaser@v1.4.1
+	go get github.com/goreleaser/goreleaser@v1.4.1
+
