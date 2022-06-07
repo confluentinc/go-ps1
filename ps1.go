@@ -69,13 +69,13 @@ We can use tokens and colors in the same format string:
 
 * ({{fgcolor "blue" "%s"}} | {{fgcolor "red" "%%C"}})`
 
-type ps1 struct {
+type PS1 struct {
 	cliName string
 	tokens  []Token
 }
 
 // New builds a PS1 object with a CLI name and custom formatting tokens.
-func New(cliName string, tokens []Token) *ps1 {
+func New(cliName string, tokens []Token) *PS1 {
 	if cliName == "" {
 		panic("must provide ps1 with a CLI name")
 	}
