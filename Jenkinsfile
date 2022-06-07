@@ -41,6 +41,9 @@ def job = {
                                 echo "MAKE DEPS\n"
                                 make deps ARGS=--vendor-only
                                 echo "MAKE TEST\n"
+                                echo "$GOROOT\n"
+                                echo "$GOPATH\n"
+                                echo "$GOBIN\n"
                                 make test
                                 echo "MAKE RELEASE-CI\n"
                                 make release-ci
