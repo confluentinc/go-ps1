@@ -85,7 +85,7 @@ func New(cliName string, tokens []Token) *PS1 {
 		panic("must provide ps1 with tokens")
 	}
 
-	return &ps1{
+	return &PS1{
 		cliName: cliName,
 		tokens:  tokens,
 	}
