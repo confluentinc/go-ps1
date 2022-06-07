@@ -39,14 +39,15 @@ def job = {
                                 echo "MAKE JENKINS-DEPS\n"
                                 make jenkins-deps || exit 1
                                 echo "MAKE DEPS\n"
-                                make deps ARGS=--vendor-only
+                                make deps ARGS=--vendor-only || exit 1
                                 echo "MAKE TEST\n"
                                 echo "$GOROOT\n"
                                 echo "$GOPATH\n"
                                 echo "$GOBIN\n"
-                                make test
+                                chmod -R 777 $GOPATH
+                                make test || exit 1
                                 echo "MAKE RELEASE-CI\n"
-                                make release-ci
+                                make release-ci || exit 1
                             '''
                         }
                     }
