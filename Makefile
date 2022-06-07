@@ -54,17 +54,17 @@ show-version:
 	@echo version bump: $(BUMP) $(_auto_bump_msg)
 	@echo bumped version: $(BUMPED_VERSION)
 
-tag-release:
-	git tag $(BUMPED_VERSION)
-	git push origin master --tags
-
-get-release-image:
-	echo '$(RELEASE_SVG)' > release.svg
-	git add release.svg
-
-commit-release:
-	git diff --exit-code --cached --name-status || \
-	git commit -m "$(BUMPED_VERSION): $(BUMP) version bump [ci skip]"
+#tag-release:
+#	git tag $(BUMPED_VERSION)
+#	git push origin main --tags
+#
+#get-release-image:
+#	echo '$(RELEASE_SVG)' > release.svg
+#	git add release.svg
+#
+#commit-release:
+#	git diff --exit-code --cached --name-status || \
+#	git commit -m "$(BUMPED_VERSION): $(BUMP) version bump [ci skip]"
 
 deps:
 	@which golint 2>/dev/null || go get -u golang.org/x/lint/golint
@@ -92,14 +92,14 @@ endif
 	@go vet ./...
 	@make coverage
 
-release: get-release-image commit-release tag-release
-
-release-ci:
-ifeq ($(BRANCH_NAME),master)
-	make release
-else
-	true
-endif
+#release: get-release-image commit-release tag-release
+#
+#release-ci:
+#ifeq ($(BRANCH_NAME),main)
+#	make release
+#else
+#	true
+#endif
 
 .PHONY: jenkins-deps
 # Jenkins only depends on goreleaser, so we omit golangci-lint and golicense
