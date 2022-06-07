@@ -27,11 +27,11 @@ def job = {
                             sh '''#!/usr/bin/env bash
                                 export HASH=$(git rev-parse --short=7 HEAD)
                                 wget "https://golang.org/dl/go1.17.6.linux-amd64.tar.gz" --quiet --output-document go1.17.6.tar.gz
-                                tar -C $(pwd) -xzf go1.17.6.tar.gz
-                                export GOROOT=$(pwd)/go
-                                export GOPATH=$(pwd)/go/path
-                                export GOBIN=$(pwd)/go/bin
-                                export modulePath=$(pwd)/go/src/github.com/confluentinc/go-ps1
+                                tar -C $(pwd)/.. -xzf go1.17.6.tar.gz
+                                export GOROOT=$(pwd)/../go
+                                export GOPATH=$(pwd)/../go/path
+                                export GOBIN=$(pwd)/../go/bin
+                                export modulePath=$(pwd)/../go/src/github.com/confluentinc/go-ps1
                                 mkdir -p $GOPATH/bin
                                 mkdir -p $GOROOT/bin
                                 export PATH=$GOPATH/bin:$GOROOT/bin:$GOBIN:$PATH
