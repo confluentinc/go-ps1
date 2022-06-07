@@ -34,7 +34,7 @@ def job = {
                                 export modulePath=$(pwd)/go/src/github.com/confluentinc/go-ps1
                                 mkdir -p $GOPATH/bin
                                 mkdir -p $GOROOT/bin
-                                export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+                                export PATH=$GOPATH/bin:$GOROOT/bin:$GOBIN:$PATH
                                 echo "machine github.com\n\tlogin $GIT_USER\n\tpassword $GIT_TOKEN" > ~/.netrc
                                 echo "MAKE JENKINS-DEPS\n"
                                 make jenkins-deps || exit 1
@@ -45,6 +45,7 @@ def job = {
                                 echo "$GOPATH\n"
                                 echo "$GOBIN\n"
                                 chmod -R 777 $GOPATH
+                                go version
                                 make test || exit 1
                                 echo "MAKE RELEASE-CI\n"
                                 make release-ci || exit 1
