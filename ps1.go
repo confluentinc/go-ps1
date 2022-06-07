@@ -69,7 +69,7 @@ We can use tokens and colors in the same format string:
 
 * ({{fgcolor "blue" "%s"}} | {{fgcolor "red" "%%C"}})`
 
-// A struct that stores the name of the CLI and a slice of custom formatting tokens
+// PS1 stores the name of the CLI and a slice of custom formatting tokens
 type PS1 struct {
 	cliName string
 	tokens  []Token
