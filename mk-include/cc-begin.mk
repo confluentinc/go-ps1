@@ -9,7 +9,7 @@ _empty :=
 _space := $(_empty) $(empty)
 
 # Master branch
-MASTER_BRANCH ?= master
+MASTER_BRANCH ?= main
 
 RELEASE_TARGETS += $(_empty)
 BUILD_TARGETS += $(_empty)
