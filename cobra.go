@@ -12,7 +12,7 @@ import (
 )
 
 // NewCobraCommand returns a Cobra CLI command named `prompt`, which can be inserted into a user's `$PS1` variable.
-func (p *ps1) NewCobraCommand() *cobra.Command {
+func (p *PS1) NewCobraCommand() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:          "prompt",
 		Short:        p.short(),
@@ -42,11 +42,11 @@ func (p *ps1) NewCobraCommand() *cobra.Command {
 	return cmd
 }
 
-func (p *ps1) short() string {
+func (p *PS1) short() string {
 	return fmt.Sprintf("Add %s context to your terminal prompt.", p.cliName)
 }
 
-func (p *ps1) long() string {
+func (p *PS1) long() string {
 	rows := make([]string, len(p.tokens))
 	for i, token := range p.tokens {
 		rows[i] = fmt.Sprintf("* %v - %s", token, token.Desc)
@@ -56,7 +56,7 @@ func (p *ps1) long() string {
 	return fmt.Sprintf(fmtLongDescription, p.cliName, p.cliName, p.cliName, p.cliName, tokens, p.cliName)
 }
 
-func (p *ps1) prompt(format string, timeoutMs int) string {
+func (p *PS1) prompt(format string, timeoutMs int) string {
 	timeout := time.Duration(timeoutMs) * time.Millisecond
 
 	vals := make(chan string)
@@ -81,7 +81,7 @@ func (p *ps1) prompt(format string, timeoutMs int) string {
 	}
 }
 
-func (p *ps1) write(format string) (string, error) {
+func (p *PS1) write(format string) (string, error) {
 	for _, token := range p.tokens {
 		format = strings.ReplaceAll(format, token.String(), token.Func())
 	}
