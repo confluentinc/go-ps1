@@ -13,7 +13,7 @@ def job = {
                 ["sonatype/confluent", "user", "SONATYPE_OSSRH_USER"],
                 ["sonatype/confluent", "password", "SONATYPE_OSSRH_PASSWORD"]]){
                 withEnv(["GIT_CREDENTIAL=${env.GIT_USER}:${env.GIT_TOKEN}", "GIT_USER=${env.GIT_USER}", "GIT_TOKEN=${env.GIT_TOKEN}"]) {
-                    sh '''#!/usr/bin/env bash
+                    sh '''#!/bin/bash -i
                         export GOVER=1.17.6
                         wget "https://golang.org/dl/go${GOVER}.linux-amd64.tar.gz" --quiet --output-document go${GOVER}.tar.gz
                         tar -C $(pwd)/.. -xzf go${GOVER}.tar.gz
