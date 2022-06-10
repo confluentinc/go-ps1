@@ -11,16 +11,10 @@ def job = {
 
             stage('Setup Go and Dependencies, and Run Tests') {
                 writeFile file:'extract-iam-credential.sh', text:libraryResource('scripts/extract-iam-credential.sh')
-                withVaultEnv([["docker_hub/jenkins", "user", "DOCKER_USERNAME"],
-                    ["docker_hub/jenkins", "password", "DOCKER_PASSWORD"],
-                    ["github/confluent_jenkins", "user", "GIT_USER"],
+                withVaultEnv([["github/confluent_jenkins", "user", "GIT_USER"],
                     ["github/confluent_jenkins", "access_token", "GIT_TOKEN"],
-                    ["artifactory/tools_jenkins", "user", "TOOLS_ARTIFACTORY_USER"],
-                    ["artifactory/tools_jenkins", "password", "TOOLS_ARTIFACTORY_PASSWORD"],
                     ["sonatype/confluent", "user", "SONATYPE_OSSRH_USER"],
-                    ["sonatype/confluent", "password", "SONATYPE_OSSRH_PASSWORD"],
-                    ["aws/prod_cli_team", "key_id", "AWS_ACCESS_KEY_ID"],
-                    ["aws/prod_cli_team", "access_key", "AWS_SECRET_ACCESS_KEY"]]){
+                    ["sonatype/confluent", "password", "SONATYPE_OSSRH_PASSWORD"]]){
                     withEnv(["GIT_CREDENTIAL=${env.GIT_USER}:${env.GIT_TOKEN}", "GIT_USER=${env.GIT_USER}", "GIT_TOKEN=${env.GIT_TOKEN}"]) {
                         withVaultFile([["gradle/gradle_properties_maven", "gradle_properties_file",
                             "gradle.properties", "GRADLE_PROPERTIES_FILE"]]) {
