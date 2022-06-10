@@ -24,6 +24,7 @@ def job = {
                         mkdir -p $GOPATH/bin
                         mkdir -p $GOROOT/bin
                         echo "export PATH=$GOPATH/bin:$GOROOT/bin:$GOBIN:$PATH" >> ~/.bashrc
+                        source ~/.bashrc
                         echo "machine github.com\n\tlogin $GIT_USER\n\tpassword $GIT_TOKEN" > ~/.netrc
                         make jenkins-deps || exit 1
                     '''
