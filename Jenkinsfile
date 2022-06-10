@@ -10,7 +10,6 @@ def job = {
         withMavenSettings("maven/jenkins_maven_global_settings", "settings", "MAVEN_GLOBAL_SETTINGS_FILE", mavenSettingsFile) {
 
             stage('Setup Go and Dependencies, and Run Tests') {
-                writeFile file:'extract-iam-credential.sh', text:libraryResource('scripts/extract-iam-credential.sh')
                 withVaultEnv([["github/confluent_jenkins", "user", "GIT_USER"],
                     ["github/confluent_jenkins", "access_token", "GIT_TOKEN"],
                     ["sonatype/confluent", "user", "SONATYPE_OSSRH_USER"],
