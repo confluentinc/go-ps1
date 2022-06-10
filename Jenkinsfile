@@ -23,6 +23,7 @@ def job = {
                         echo "export modulePath=$(pwd)/../go/src/github.com/confluentinc/go-ps1" >> ~/.bashrc
                         mkdir -p $GOPATH/bin
                         mkdir -p $GOROOT/bin
+                        source ~/.bashrc
                         echo "export PATH=$GOPATH/bin:$GOROOT/bin:$GOBIN:$PATH" >> ~/.bashrc
                         source ~/.bashrc
                         cat ~/.bashrc
