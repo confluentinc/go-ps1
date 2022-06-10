@@ -21,10 +21,11 @@ def job = {
                         echo "export GOPATH=$(pwd)/../go/path" >> ~/.bashrc
                         echo "export GOBIN=$(pwd)/../go/bin" >> ~/.bashrc
                         echo "export modulePath=$(pwd)/../go/src/github.com/confluentinc/go-ps1" >> ~/.bashrc
+                        source ~/.bashrc
+                        echo "GOROOT IS ${GOROOT}\n"
                         mkdir -p $GOPATH/bin
                         mkdir -p $GOROOT/bin
-                        source ~/.bashrc
-                        echo "export PATH=$GOPATH/bin:$GOROOT/bin:$GOBIN:$PATH" >> ~/.bashrc
+                        echo "export PATH=${GOPATH}/bin:${GOROOT}/bin:${GOBIN}:$PATH" >> ~/.bashrc
                         source ~/.bashrc
                         cat ~/.bashrc
                         echo "machine github.com\n\tlogin $GIT_USER\n\tpassword $GIT_TOKEN" > ~/.netrc
