@@ -22,12 +22,10 @@ def job = {
                         echo "export GOBIN=$(pwd)/../go/bin" >> ~/.bashrc
                         echo "export modulePath=$(pwd)/../go/src/github.com/confluentinc/go-ps1" >> ~/.bashrc
                         source ~/.bashrc
-                        echo "GOROOT IS ${GOROOT}\n"
                         mkdir -p $GOPATH/bin
                         mkdir -p $GOROOT/bin
                         echo "export PATH=${GOPATH}/bin:${GOROOT}/bin:${GOBIN}:$PATH" >> ~/.bashrc
                         source ~/.bashrc
-                        cat ~/.bashrc
                         echo "machine github.com\n\tlogin $GIT_USER\n\tpassword $GIT_TOKEN" > ~/.netrc
                         make jenkins-deps || exit 1
                     '''
@@ -42,7 +40,6 @@ def job = {
                 ["sonatype/confluent", "password", "SONATYPE_OSSRH_PASSWORD"]]){
                 withEnv(["GIT_CREDENTIAL=${env.GIT_USER}:${env.GIT_TOKEN}", "GIT_USER=${env.GIT_USER}", "GIT_TOKEN=${env.GIT_TOKEN}"]) {
                     sh '''#!/bin/bash -i
-                        source ~/.bashrc
                         make deps ARGS=--vendor-only || exit 1
                         make test || exit 1
                         make release-ci || exit 1
