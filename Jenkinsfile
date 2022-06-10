@@ -14,15 +14,16 @@ def job = {
                 ["sonatype/confluent", "password", "SONATYPE_OSSRH_PASSWORD"]]){
                 withEnv(["GIT_CREDENTIAL=${env.GIT_USER}:${env.GIT_TOKEN}", "GIT_USER=${env.GIT_USER}", "GIT_TOKEN=${env.GIT_TOKEN}"]) {
                     sh '''#!/usr/bin/env bash
-                        wget "https://golang.org/dl/go1.17.6.linux-amd64.tar.gz" --quiet --output-document go1.17.6.tar.gz
-                        tar -C $(pwd)/.. -xzf go1.17.6.tar.gz
-                        export GOROOT=$(pwd)/../go
-                        export GOPATH=$(pwd)/../go/path
-                        export GOBIN=$(pwd)/../go/bin
-                        export modulePath=$(pwd)/../go/src/github.com/confluentinc/go-ps1
+                        export GOVER=1.17.6
+                        wget "https://golang.org/dl/go${GOVER}.linux-amd64.tar.gz" --quiet --output-document go${GOVER}.tar.gz
+                        tar -C $(pwd)/.. -xzf go${GOVER}.tar.gz
+                        echo "export GOROOT=$(pwd)/../go" >> ~/.bashrc
+                        echo "export GOPATH=$(pwd)/../go/path" >> ~/.bashrc
+                        echo "export GOBIN=$(pwd)/../go/bin" >> ~/.bashrc
+                        echo "export modulePath=$(pwd)/../go/src/github.com/confluentinc/go-ps1" >> ~/.bashrc
                         mkdir -p $GOPATH/bin
                         mkdir -p $GOROOT/bin
-                        export PATH=$GOPATH/bin:$GOROOT/bin:$GOBIN:$PATH
+                        echo "export PATH=$GOPATH/bin:$GOROOT/bin:$GOBIN:$PATH" >> ~/.bashrc
                         echo "machine github.com\n\tlogin $GIT_USER\n\tpassword $GIT_TOKEN" > ~/.netrc
                         make jenkins-deps || exit 1
                     '''
