@@ -23,7 +23,7 @@ var exampleTokens = []Token{
 }
 
 func TestShort(t *testing.T) {
-	p := &ps1{cliName: exampleCLIName}
+	p := &PS1{cliName: exampleCLIName}
 	require.Equal(t, "Add confluent context to your terminal prompt.", p.short())
 }
 
@@ -103,31 +103,31 @@ We can use tokens and colors in the same format string:
 }
 
 func TestPrompt(t *testing.T) {
-	p := new(ps1)
+	p := new(PS1)
 	out := p.prompt("format", 1000)
 	require.Equal(t, "format", out)
 }
 
 func TestPrompt_ErrUndefinedFunction(t *testing.T) {
-	p := &ps1{cliName: exampleCLIName}
+	p := &PS1{cliName: exampleCLIName}
 	out := p.prompt(`{{func}}`, 1000)
 	require.Equal(t, `(confluent|function "func" not defined)`, out)
 }
 
 func TestPrompt_ErrColorNotFound(t *testing.T) {
-	p := &ps1{cliName: exampleCLIName}
+	p := &PS1{cliName: exampleCLIName}
 	out := p.prompt(`{{fgcolor "gray"}}`, 1000)
 	require.Equal(t, `(confluent|fgcolor "gray" not found)`, out)
 }
 
 func TestPrompt_Timeout(t *testing.T) {
-	p := &ps1{cliName: exampleCLIName}
+	p := &PS1{cliName: exampleCLIName}
 	out := p.prompt("", 0)
 	require.Equal(t, "(confluent)", out)
 }
 
 func TestPrompt_TimeoutOnToken(t *testing.T) {
-	p := &ps1{
+	p := &PS1{
 		cliName: exampleCLIName,
 		tokens: []Token{
 			{
@@ -144,41 +144,41 @@ func TestPrompt_TimeoutOnToken(t *testing.T) {
 }
 
 func TestWrite_Basic(t *testing.T) {
-	p := new(ps1)
+	p := new(PS1)
 	out, err := p.write("format")
 	require.NoError(t, err)
 	require.Equal(t, "format", out)
 }
 
 func TestWrite_Color(t *testing.T) {
-	p := new(ps1)
+	p := new(PS1)
 	out, err := p.write(`{{fgcolor "black" "format"}}`)
 	require.NoError(t, err)
 	require.Equal(t, "format", out)
 }
 
 func TestWrite_ErrColorNotFound(t *testing.T) {
-	p := new(ps1)
+	p := new(PS1)
 	_, err := p.write(`{{fgcolor "gray"}}`)
 	require.Error(t, err)
 }
 
 func TestWrite_ColorAndAttributes(t *testing.T) {
-	p := new(ps1)
+	p := new(PS1)
 	out, err := p.write(`{{fgcolor "black" "format" | attr "bold"}}`)
 	require.NoError(t, err)
 	require.Equal(t, "format", out)
 }
 
 func TestWrite_Token(t *testing.T) {
-	p := &ps1{tokens: exampleTokens}
+	p := &PS1{tokens: exampleTokens}
 	out, err := p.write("%A")
 	require.NoError(t, err)
 	require.Equal(t, "Value A", out)
 }
 
 func TestWrite_ColorAndToken(t *testing.T) {
-	p := &ps1{tokens: exampleTokens}
+	p := &PS1{tokens: exampleTokens}
 	out, err := p.write(`{{fgcolor "black" "%A"}}`)
 	require.NoError(t, err)
 	require.Equal(t, "Value A", out)
