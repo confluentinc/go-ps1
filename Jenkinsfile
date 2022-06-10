@@ -42,6 +42,7 @@ def job = {
                 ["sonatype/confluent", "password", "SONATYPE_OSSRH_PASSWORD"]]){
                 withEnv(["GIT_CREDENTIAL=${env.GIT_USER}:${env.GIT_TOKEN}", "GIT_USER=${env.GIT_USER}", "GIT_TOKEN=${env.GIT_TOKEN}"]) {
                     sh '''#!/bin/bash -i
+                        source ~/.bashrc
                         make deps ARGS=--vendor-only || exit 1
                         make test || exit 1
                         make release-ci || exit 1
