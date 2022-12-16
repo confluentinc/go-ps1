@@ -1,5 +1,7 @@
 # go-ps1
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/confluentinc/go-ps1.svg)](https://pkg.go.dev/github.com/confluentinc/go-ps1)
+
 ## Description
 
 This package provides a [Cobra](https://github.com/spf13/cobra) command that helps your users add custom PS1 prompts for your CLI.
