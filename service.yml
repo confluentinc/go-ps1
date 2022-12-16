@@ -1,8 +1,12 @@
 name: go-ps1
 lang: go
-lang_version: 1.17
+lang_version: 1.19.4
+git:
+  enable: true
+  hooks:
+    enable: true
 github:
   enable: true
   repo_name: confluentinc/go-ps1
-semaphore:
+gitignore:
   enable: true

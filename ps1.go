@@ -80,7 +80,7 @@ func New(cliName string, tokens []Token) *ps1 {
 		panic("must provide ps1 with a CLI name")
 	}
 
-	if tokens == nil || len(tokens) == 0 {
+	if len(tokens) == 0 {
 		panic("must provide ps1 with tokens")
 	}
 
