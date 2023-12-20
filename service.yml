@@ -1,6 +1,5 @@
 name: go-ps1
 lang: go
-lang_version: "1.21.4"
 git:
   enable: true
   hooks:
