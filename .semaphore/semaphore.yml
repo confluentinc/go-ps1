@@ -62,11 +62,8 @@ blocks:
             - Invoke-WebRequest -OutFile Go.zip -Uri https://go.dev/dl/go$(Get-Content .go-version).windows-amd64.zip -UseBasicParsing
             - Expand-Archive Go.zip -DestinationPath C:\
             - $Env:PATH = "C:\Go\bin;$Env:PATH"
-            - $Env:GOCOVERDIR = "test/coverage"
-            - New-Item $Env:GOCOVERDIR -ItemType Directory
             - go install gotest.tools/gotestsum@v1.8.2
             - gotestsum --junitfile test-report.xml -- -v ./...
-            - go tool covdata textfmt -i $Env:GOCOVERDIR -o test/coverage.out
       epilogue:
         always:
           commands:
