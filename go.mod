@@ -1,6 +1,6 @@
 module github.com/confluentinc/go-ps1
 
-go 1.22.12
+go 1.23.6
 
 require (
 	github.com/fatih/color v1.17.0
