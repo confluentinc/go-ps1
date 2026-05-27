@@ -63,7 +63,7 @@ blocks:
             - Expand-Archive Go.zip -DestinationPath C:\
             - $Env:PATH = "C:\Go\bin;$Env:PATH"
             - go install gotest.tools/gotestsum@v1.8.2
-            - gotestsum --junitfile test-report.xml -- -v ./...
+            - '& "$Env:USERPROFILE\go\bin\gotestsum.exe" --junitfile test-report.xml -- -v ./...'
       epilogue:
         always:
           commands:
